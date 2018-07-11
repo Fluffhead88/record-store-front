@@ -42,4 +42,4 @@ _addBand(event){
   }
 }
 
-export default BandForm
+export default BandForm;
