@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Main from "./Main.js"
 
 class Track extends Component{
   constructor(props){

@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Track from "./Track.js"
 import TrackForm from "./TrackForm.js"
+import Main from "./Main.js"
 
 class Album extends Component{
   constructor(props){
     super(props);
 
     this.state = {
-      tracks: this.props.album.tracks
+      tracks: this.album.tracks
     }
 
     this._removeTrack=this._removeTrack.bind(this);

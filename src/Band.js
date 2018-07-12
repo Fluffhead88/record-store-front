@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Album from './Album.js';
 import AlbumForm from "./AlbumForm.js";
+import Main from "./Main.js"
 
 class Band extends Component{
   constructor(props){
     super(props);
 
     this.state = {
-      albums: this.props.band.albums
+      albums: this.band.albums
     }
     this._addAlbum = this._addAlbum.bind(this);
     this._removeAlbum = this._removeAlbum.bind(this);
