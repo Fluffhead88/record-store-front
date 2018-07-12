@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import Band from "./Band.js";
 import Album from "./Album.js";
+import Track from "./Track.js";
 import BandForm from './BandForm.js';
+import AlbumForm from './AlbumForm.js';
+import TrackForm from './TrackForm.js';
 
 var data = [
   {
@@ -11,25 +14,25 @@ var data = [
      {
        id: 1,
        album: "Rift",
-       [{
+       tracks: [{
           id: 1,
-          track: "Rift"
-      },
+          name: "Rift"
+        },
       {
           id: 2,
-          track: "Fast Enough for You"
+          name: "Fast Enough for You"
        }]
      },
      {
        id: 2,
        album: "Hoist",
-       [{
+       tracks:[{
           id: 1,
-          track: "Julis"
+          name: "Julis"
       },
       {
           id: 2,
-          track: "Down with Disease"
+          name: "Down with Disease"
        }]
      }
    ]
@@ -40,25 +43,25 @@ var data = [
     {
       id: 1,
       album: "American Beauty",
-      [{
+      tracks:[{
          id: 1,
-         track: "Box of Rain"
+         name: "Box of Rain"
      },
      {
          id: 2,
-         track: "Friend of the Devil"
+         name: "Friend of the Devil"
       }]
     },
     {
       id: 2,
       album: "Terrapin Station",
-      [{
+      tracks:[{
          id: 1,
-         track: "Estimated Prophet"
+         name: "Estimated Prophet"
      },
      {
          id: 2,
-         track: "Dancin' in the Streets"
+         name: "Dancin' in the Streets"
       }]
     }
   ]
@@ -69,25 +72,25 @@ var data = [
     {
       id: 1,
       album: "Space Wrangler",
-      [{
+      tracks:[{
          id: 1,
-         track: "Chilly Water"
+         name: "Chilly Water"
      },
      {
          id: 2,
-         track: "Travelin' Light"
+         name: "Travelin' Light"
       }]
     },
     {
       id: 2,
       album: "Ain't Life Grand",
-      [{
+      tracks:[{
          id: 1,
-         track: "Little Kin"
+         name: "Little Kin"
      },
      {
          id: 2,
-         track: "Ain't Life Grand"
+         name: "Ain't Life Grand"
       }]
     }
   ]
@@ -146,37 +149,12 @@ render(){
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Albums
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Tracks
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
+<Band/>
+<Album/>
 </div>
     </div>
   </div>
+
     );
   }
 }
