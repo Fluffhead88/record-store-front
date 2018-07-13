@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import Band from './Band';
 
-class BandForm extends Component{
+class Band extends Component{
   constructor(props){
-    super(props)
+    super(props);
 
     this.state={
       band:''
@@ -23,14 +24,20 @@ _handleInput(event){
 _addBand(event){
   event.preventDefault();
 
-  let context = this.state;
+  let context = this.state.band;
   this.props.addBand(context);
 
   this.setState({band:''});
 }
 
   render(){
+    let $bands = this.props.data.map(function(band){
+      return(
+        <Band key={band.id} band={band} addAlbum={this.props.addAlbum}/>
+      );
+    })
     return(
+      <div>
       <form onSubmit={this._addBand}>
         <div className="form-group">
           <label htmlFor="bandInput">Band Input</label>
@@ -38,8 +45,12 @@ _addBand(event){
         </div>
         <button type="submit" className="btn btn-primary">Add a Band</button>
       </form>
+      <ul>
+        {$bands}
+      </ul>
+      </div>
     );
   }
 }
 
-export default BandForm;
+export default Bands;

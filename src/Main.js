@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import Band from "./Band.js";
-import Album from "./Album.js";
-import Track from "./Track.js";
-import BandForm from './BandForm.js';
-import AlbumForm from './AlbumForm.js';
-import TrackForm from './TrackForm.js';
+import Bands from "./Bands.js";
+
 
 var data = [
   {
@@ -14,7 +10,7 @@ var data = [
      {
        id: 1,
        album: "Rift",
-       tracks: [{
+       track: [{
           id: 1,
           name: "Rift"
         },
@@ -26,7 +22,7 @@ var data = [
      {
        id: 2,
        album: "Hoist",
-       tracks:[{
+       track:[{
           id: 1,
           name: "Julis"
       },
@@ -43,7 +39,7 @@ var data = [
     {
       id: 1,
       album: "American Beauty",
-      tracks:[{
+      track:[{
          id: 1,
          name: "Box of Rain"
      },
@@ -55,7 +51,7 @@ var data = [
     {
       id: 2,
       album: "Terrapin Station",
-      tracks:[{
+      track:[{
          id: 1,
          name: "Estimated Prophet"
      },
@@ -72,7 +68,7 @@ var data = [
     {
       id: 1,
       album: "Space Wrangler",
-      tracks:[{
+      track:[{
          id: 1,
          name: "Chilly Water"
      },
@@ -84,7 +80,7 @@ var data = [
     {
       id: 2,
       album: "Ain't Life Grand",
-      tracks:[{
+      track:[{
          id: 1,
          name: "Little Kin"
      },
@@ -101,10 +97,11 @@ class Main extends Component{
     super(props);
 
     this.state={
-      data:data
+      data:[]
     }
     this._removeBand = this._removeBand.bind(this);
     this._addBand = this._addBand.bind(this);
+    this._addAlbum = this._addAlbum.bind(this);
   }
 
   _removeBand(band){
@@ -119,6 +116,18 @@ class Main extends Component{
     this.setState({data});
   }
 
+  _addAlbum(album){
+    let data = this.state.data;
+    band.album.push({album});
+    this.setState({data});
+  }
+
+  _addTrack(track){
+    let data = this.state.data;
+    band.album.track.push({track});
+    this.setState({data});
+  }
+
 render(){
   let self=this;
 
@@ -130,29 +139,9 @@ render(){
 
 
     return(
-  <div className="container">
-    <div className="row justify-content-center">
-      <div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Bands
-        </button>
-      </h5>
-    </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        <BandForm addBand={this._addBand}/>
-        {$data}
-      </div>
-    </div>
-  </div>
-<Band/>
-<Album/>
-</div>
-    </div>
+  <div className="container">
+<Bands bands={this.state.data} addBand={this._addBand} addAlbum={this._addAlbum} addTrack={this._addTrack}/>
   </div>
 
     );

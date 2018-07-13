@@ -1,33 +1,40 @@
 import React, {Component} from 'react';
 import Album from './Album.js';
-import AlbumForm from "./AlbumForm.js";
-import Main from "./Main.js"
+
 
 class Band extends Component{
   constructor(props){
     super(props);
 
     this.state = {
-      albums: this.band.albums
+      albums: this.props.band.albums
+      album:""
     }
     this._addAlbum = this._addAlbum.bind(this);
     this._removeAlbum = this._removeAlbum.bind(this);
+    this._handleInput = this._handleInput.bind(this);
   }
 
-_addAlbum(album){
-  let albums = this.state.albums;
-  albums.push(album);
-  this.setState({albums});
+_handleInput(event){
+  if(event.target.name === 'album'){
+    this.setState({album:event.target.value});
+  }
+}
+
+_addAlbum(event){
+  event.preventDefault();
+  let albums = this.state.album;
+  this.props.addAlbum(this.props.band.id, albums);
+  this.setState({album: ''});
 }
 _removeAlbum(album){
-  let albums = this.state.albums;
+  let albums = this.state.album;
   albums.splice(album.indexOf(album), 1);
   this.setState({albums});
 }
 
   render(){
-    let self = this;
-    let $albums = this.state.albums.map(function(album){
+    let $albums = this.state.albums.map(function(album, id){
       return(
         <Album key={album.id} album={album} removeAlbum={()=>self._removeAlbum(album)}/>
       )
@@ -37,7 +44,7 @@ _removeAlbum(album){
         <div class="card-header" id="headingTwo">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Albums
+              {this.props.band.name}
             </button>
           </h5>
         </div>
