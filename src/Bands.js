@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Band from './Band';
 
-class Band extends Component{
+class Bands extends Component{
   constructor(props){
     super(props);
 
@@ -31,9 +31,9 @@ _addBand(event){
 }
 
   render(){
-    let $bands = this.props.data.map(function(band){
+    let $bands = this.props.bands.map(function(band){
       return(
-        <Band key={band.id} band={band} addAlbum={this.props.addAlbum}/>
+        <Band key={band.id} band={band} addAlbum={this.props.addAlbum} addTrack={this.props.addTrack}/>
       );
     })
     return(

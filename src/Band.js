@@ -7,7 +7,7 @@ class Band extends Component{
     super(props);
 
     this.state = {
-      albums: this.props.band.albums
+      albums: this.props.band.albums || [],
       album:""
     }
     this._addAlbum = this._addAlbum.bind(this);
@@ -36,7 +36,7 @@ _removeAlbum(album){
   render(){
     let $albums = this.state.albums.map(function(album, id){
       return(
-        <Album key={album.id} album={album} removeAlbum={()=>self._removeAlbum(album)}/>
+        <Album key={album.id} album={album} removeAlbum={()=>this._removeAlbum(album)}/>
       )
     });
     return(
@@ -50,7 +50,7 @@ _removeAlbum(album){
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
-            <AlbumForm addAlbum={this._addAlbum}/>
+            <Album addAlbum={this._addAlbum}/>
             {$albums}
         </div>
       </div>

@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import Bands from "./Bands.js";
 
 
-var data = [
+var bands = [
   {
    id: 1,
-   band: "Phish",
+   name: "Phish",
    albums: [
      {
        id: 1,
        album: "Rift",
-       track: [{
+       tracks: [{
           id: 1,
           name: "Rift"
         },
@@ -34,7 +34,7 @@ var data = [
    ]
    },{
   id: 2,
-  band:"The Grateful Dead",
+  name:"The Grateful Dead",
   albums: [
     {
       id: 1,
@@ -63,7 +63,7 @@ var data = [
   ]
 },{
   id: 3,
-  band:"Widespread Panic",
+  name:"Widespread Panic",
   albums: [
     {
       id: 1,
@@ -97,7 +97,7 @@ class Main extends Component{
     super(props);
 
     this.state={
-      data:[]
+      bands:[]
     }
     this._removeBand = this._removeBand.bind(this);
     this._addBand = this._addBand.bind(this);
@@ -105,35 +105,35 @@ class Main extends Component{
   }
 
   _removeBand(band){
-    let data = this.state.data
-    data.splice(data.indexOf(band), 1);
-    this.setState({data});
+    let bands = this.state.bands
+    bands.splice(bands.indexOf(band), 1);
+    this.setState({bands});
   }
 
   _addBand(band){
-    let data = this.state.data;
-    data.push(band);
-    this.setState({data});
+    let bands = this.state.bands;
+    bands.push(band);
+    this.setState({bands});
   }
 
   _addAlbum(album){
-    let data = this.state.data;
-    band.album.push({album});
-    this.setState({data});
+    let bands = this.state.bands;
+    bands.album.push({album});
+    this.setState({bands});
   }
 
   _addTrack(track){
-    let data = this.state.data;
-    band.album.track.push({track});
-    this.setState({data});
+    let bands = this.state.bands;
+    bands.album.track.push({track});
+    this.setState({bands});
   }
 
 render(){
   let self=this;
 
-  let $data = this.state.data.map(function(band){
+  let $bands = this.state.bands.map(function(band){
     return(
-      <Band key={band.id} band={band} removeBand={()=>self._removeBand(band)}/>
+      <Bands key={band.id} bands={band} removeBand={()=>self._removeBand(band)}/>
     )
   });
 
@@ -141,7 +141,7 @@ render(){
     return(
 
   <div className="container">
-<Bands bands={this.state.data} addBand={this._addBand} addAlbum={this._addAlbum} addTrack={this._addTrack}/>
+<Bands bands={this.state.bands} addBand={this._addBand} addAlbum={this._addAlbum} addTrack={this._addTrack}/>
   </div>
 
     );
