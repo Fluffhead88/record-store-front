@@ -8,57 +8,24 @@ var bands = [
    name: "Phish",
    albums: [
      {
-       id: 1,
        album: "Rift",
-       tracks: [{
-          id: 1,
-          name: "Rift"
-        },
-      {
-          id: 2,
-          name: "Fast Enough for You"
-       }]
+       tracks: ["Rift", "Fast Enough for You"]
      },
      {
-       id: 2,
        album: "Hoist",
-       track:[{
-          id: 1,
-          name: "Julis"
-      },
-      {
-          id: 2,
-          name: "Down with Disease"
-       }]
+       track:["Julis", "Down with Disease"]
      }
    ]
    },{
-  id: 2,
   name:"The Grateful Dead",
   albums: [
     {
-      id: 1,
       album: "American Beauty",
-      track:[{
-         id: 1,
-         name: "Box of Rain"
-     },
-     {
-         id: 2,
-         name: "Friend of the Devil"
-      }]
+      track:[ "Box of Rain", "Friend of the Devil"]
     },
     {
-      id: 2,
       album: "Terrapin Station",
-      track:[{
-         id: 1,
-         name: "Estimated Prophet"
-     },
-     {
-         id: 2,
-         name: "Dancin' in the Streets"
-      }]
+      track:["Estimated Prophet", "Dancin' in the Streets"]
     }
   ]
 },{
@@ -66,28 +33,12 @@ var bands = [
   name:"Widespread Panic",
   albums: [
     {
-      id: 1,
       album: "Space Wrangler",
-      track:[{
-         id: 1,
-         name: "Chilly Water"
-     },
-     {
-         id: 2,
-         name: "Travelin' Light"
-      }]
+      track:[ "Chilly Water", "Travelin' Light"]
     },
     {
-      id: 2,
       album: "Ain't Life Grand",
-      track:[{
-         id: 1,
-         name: "Little Kin"
-     },
-     {
-         id: 2,
-         name: "Ain't Life Grand"
-      }]
+      track:["Little Kin", "Ain't Life Grand"]
     }
   ]
 }]
@@ -104,6 +55,7 @@ class App extends Component {
     this._removeBand = this._removeBand.bind(this);
     this._addBand = this._addBand.bind(this);
     this._addAlbum = this._addAlbum.bind(this);
+    this._addTrack = this._addTrack.bind(this);
   }
 
   componentDidMount(){
@@ -115,7 +67,7 @@ class App extends Component {
     bands.splice(bands.indexOf(band), 1);
   }
 
-  _addBand(band){
+  _addBand(name){
     let id = 1;
     let bands = this.state.bands;
     bands.forEach(function(band){
@@ -123,32 +75,32 @@ class App extends Component {
         id = band.id+1;
       }
     })
-    // let band = {id, name, albums:[]}
+    let band = {id, name, albums:[]}
     bands.push(band);
   }
 
-  _addAlbum(album){
+  _addAlbum(id, album){
     let bands = this.state.bands;
     bands.forEach(function(band){
-      // if(band.id===id){
+      if(band.id===id){
         if(band.albums){
           bands.albums.push({album});
         } else {
           band.albums =[{album}];
-        // }
+        }
       }
     });
   }
 
-  _addTrack(track){
+  _addTrack(id, track){
     let bands = this.state.bands;
     bands.forEach(function(band){
-      // if(band.id===id){
+      if(band.id===id){
         if(band.albums.track){
           bands.albums.track.push({track});
         } else {
           band.albums.track =[{track}];
-        // }
+        }
       }
     });
   }

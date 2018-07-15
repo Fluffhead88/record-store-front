@@ -32,11 +32,11 @@ _removeAlbum(album){
   albums.splice(album.indexOf(album), 1);
   this.setState({albums});
 }
-
+ // removeAlbum={()=>this._removeAlbum(album)}
   render(){
-    let $albums = this.state.albums.map(function(album, id){
+    let $albums = this.state.albums.map(function(album, index){
       return(
-        <Album key={album.id} album={album} removeAlbum={()=>this._removeAlbum(album)}/>
+        <Album key={index} album={album}/>
       )
     });
     return(
@@ -50,7 +50,7 @@ _removeAlbum(album){
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
-            <Album addAlbum={this._addAlbum}/>
+            {/* <{this._addAlbum}/> */}
             {$albums}
         </div>
       </div>

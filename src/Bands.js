@@ -29,11 +29,11 @@ _addBand(event){
 
   this.setState({band:''});
 }
-
+// addTrack={this.props.addTrack}
   render(){
     let $bands = this.props.bands.map(function(band){
       return(
-        <Band key={band.id} band={band} addAlbum={this.props.addAlbum} addTrack={this.props.addTrack}/>
+        <Band key={band.id} band={band} addAlbum={this.props.addAlbum}/>
       );
     })
     return(
