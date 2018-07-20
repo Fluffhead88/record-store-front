@@ -1,59 +1,63 @@
-import React, {Component} from 'react';
-import Album from './Album.js';
+import React, { Component } from 'react';
+import Album from './Album';
 
-
-class Band extends Component{
+class Band extends Component {
   constructor(props){
     super(props);
 
     this.state = {
       albums: this.props.band.albums || [],
-      album:""
+      album: ''
     }
-    this._addAlbum = this._addAlbum.bind(this);
-    this._removeAlbum = this._removeAlbum.bind(this);
+
     this._handleInput = this._handleInput.bind(this);
+    this._addAlbum = this._addAlbum.bind(this);
+   this._removeAlbum = this._removeAlbum.bind(this);
   }
 
-_handleInput(event){
-  if(event.target.name === 'album'){
-    this.setState({album:event.target.value});
+  _handleInput(event) {
+    if(event.target.name === 'album') {
+      this.setState({album: event.target.value});
+    }
   }
-}
 
-_addAlbum(event){
-  event.preventDefault();
-  let albums = this.state.album;
-  this.props.addAlbum(this.props.band.id, albums);
-  this.setState({album: ''});
-}
-_removeAlbum(album){
-  let albums = this.state.album;
-  albums.splice(album.indexOf(album), 1);
-  this.setState({albums});
-}
- // removeAlbum={()=>this._removeAlbum(album)}
-  render(){
-    let $albums = this.state.albums.map(function(album, index){
-      return(
-        <Album key={index} album={album}/>
-      )
-    });
-    return(
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              {this.props.band.name}
-            </button>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-          <div class="card-body">
-            {/* <{this._addAlbum}/> */}
+  _addAlbum(event) {
+    event.preventDefault();
+    this.props.addAlbum(this.props.band.id, this.state.album);
+    this.setState({album: ''});
+  }
+
+  _removeAlbum(album){
+    let albums = this.state.album;
+    albums.splice(album.indexOf(album), 1);
+    this.setState({albums});
+  }
+
+  render() {
+    // let $albums = [];
+    // if(this.props.band.albums) {
+    //   $albums = this.state.albums.map((album, index)=><Album key={index} album={album}/>);
+    // }
+    let $albums = this.state.albums.map((album, index)=><Album key={index} album={album}/>);
+    return (
+      <div>
+        <p>
+        <button className="btn btn-success" type="button" data-toggle="collapse" data-target={`#${this.props.band.name.replace(/ /g,'')}`} aria-expanded="false" aria-controls={`#${this.props.band.name.replace(/ /g,'')}`}>
+          {this.props.band.name}
+        </button>
+        </p>
+        <div className="collapse" id={this.props.band.name.replace(/ /g,'')}>
+          <div className="card card-body">
+            <form onSubmit={this._addAlbum}>
+              <div className="form-group">
+                <label for="AlbumInput">Add Album</label>
+                <input id="AlbumInput" className="form-control" name="album" type="text" placeholder="album name" value={this.state.album} onChange={this._handleInput} required/>
+              </div>
+              <input className="btn btn-primary" type="submit" value="Add Album"/>
+            </form>
             {$albums}
+          </div>
         </div>
-      </div>
       </div>
     );
   }
